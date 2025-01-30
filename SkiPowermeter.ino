@@ -1,13 +1,13 @@
 // main.ino
 #include "BLEHelper.h"
+#include "Accelerometer.h"
 
-#include "Adafruit_TinyUSB.h"   // DMS
-#include "HX711.h"              // DMS
+#include "Adafruit_TinyUSB.h"
+#include "HX711.h"
 
 BLEHelper bleHelper; //BLE
-HX711 scale; //DMS
-
-
+HX711 dms; //DMS
+Accelerometer Acc;
 // Definiere Pins für den HX711
 const int LOADCELL_DOUT_PIN = 3; // Daten-Pin (DT) --> DMS
 const int LOADCELL_SCK_PIN = 2;  // Takt-Pin (SCK) --> DMS
@@ -29,28 +29,39 @@ void setup() {
 
   //DMS Setup
   // Initialisiere HX711 mit den definierten Pins
-  scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
-  scale.set_scale();    // Standard-Kalibrierfaktor, ggf. anpassen
-  scale.tare();         // Setzt den Nullpunkt (Tara)
+  dms.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
+  dms.set_scale();    // Standard-Kalibrierfaktor, ggf. anpassen
+  dms.tare();         // Setzt den Nullpunkt (Tara)
 
-  Serial.println("DMS und HX711-Modul bereit.");
+  Serial.println("HX711 Module ready");
+
+  // Accelerometer setup
+  // Initialize I2C
+  Wire.begin();
+  delay(20);
+  Acc.begin();
+  delay(100);
 }
 
 void loop() {
   
   TestBLE();
   TestDMS();
+  TestAccel();
   delay(1000);  // Send data every second
 }
 
 
+
+// Test Functions
+
+
 void TestDMS()
 {
-  float gewicht = scale.get_units(10);  // Durchschnitt über 10 Messungen
+  float force_reading = dms.get_value(1);     // get latest value
 
-  Serial.print("Gewicht / Dehnung: ");
-  Serial.print(gewicht, 2);             // Zwei Dezimalstellen anzeigen
-  Serial.println(" Einheiten");
+  Serial.print("dms reading: ");
+  Serial.println(force_reading, 2);             // round to two decimals
 }
 
 void TestBLE() 
@@ -72,4 +83,34 @@ void TestBLE()
   // Update power data with all characteristics
   bleHelper.updatePowerData(power, revolutions, timestamp, batteryLevel, 1, cumulativeCrankRevolutions, lastCrankEventTime, maxForceMagnitude, minForceMagnitude, maxAngle, minAngle);
 
+}
+
+void TestAccel()
+{
+  int16_t ax, ay, az;
+  Acc.readAcceleration(ax, ay, az);
+
+  //readSensorTime();
+
+  // Verify the BMI160 chip ID
+  uint8_t chipId = Acc.readRegister(BMI160_REG_CHIP_ID);
+  if (chipId != BMI160_CHIP_ID) {
+    Serial.println("BMI160 not detected. Check wiring.");
+  }
+  else {
+  }
+
+
+  //Convert raw data to g (assuming default range of +/- 2g)
+  float accelX = ax / 16384.0;
+  float accelY = ay / 16384.0;
+  float accelZ = az / 16384.0;
+
+  Serial.print("Accel X: ");
+  Serial.print(accelX);
+  Serial.print(" g, Y: ");
+  Serial.print(accelY);
+  Serial.print(" g, Z: ");
+  Serial.print(accelZ);
+  Serial.println(" g");
 }

@@ -31,6 +31,26 @@
   },
   {
     "Sourcefile": "C:\\Users\\janve\\OneDrive\\Dokumente\\Arduino\\SkiPowermeter\\build\\sketch\\SkiPowermeter.ino.cpp",
+    "Include": "Wire.h",
+    "Includepath": "C:\\Users\\janve\\AppData\\Local\\Arduino15\\packages\\Seeeduino\\hardware\\nrf52\\1.1.8\\libraries\\Wire"
+  },
+  {
+    "Sourcefile": "C:\\Users\\janve\\OneDrive\\Dokumente\\Arduino\\SkiPowermeter\\build\\sketch\\SkiPowermeter.ino.cpp",
+    "Include": "HX711.h",
+    "Includepath": "C:\\Users\\janve\\Documents\\Arduino\\libraries\\HX711"
+  },
+  {
+    "Sourcefile": "C:\\Users\\janve\\OneDrive\\Dokumente\\Arduino\\SkiPowermeter\\build\\sketch\\SkiPowermeter.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\janve\\OneDrive\\Dokumente\\Arduino\\SkiPowermeter\\build\\sketch\\Accelerometer.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\janve\\OneDrive\\Dokumente\\Arduino\\SkiPowermeter\\build\\sketch\\BLEHelper.cpp",
     "Include": "",
     "Includepath": null
   },
@@ -506,6 +526,16 @@
   },
   {
     "Sourcefile": "C:\\Users\\janve\\AppData\\Local\\Arduino15\\packages\\Seeeduino\\hardware\\nrf52\\1.1.8\\libraries\\SPI\\SPI_nrf52832.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\janve\\AppData\\Local\\Arduino15\\packages\\Seeeduino\\hardware\\nrf52\\1.1.8\\libraries\\Wire\\Wire_nRF52.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\janve\\Documents\\Arduino\\libraries\\HX711\\HX711.cpp",
     "Include": "",
     "Includepath": null
   },

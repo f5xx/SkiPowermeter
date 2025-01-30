@@ -1,5 +1,5 @@
-C:\Users\janve\OneDrive\Dokumente\Arduino\SkiPowermeter\build\sketch\SkiPowermeter.ino.cpp.o: \
- C:\Users\janve\OneDrive\Dokumente\Arduino\SkiPowermeter\build\sketch\SkiPowermeter.ino.cpp \
+C:\Users\janve\OneDrive\Dokumente\Arduino\SkiPowermeter\build\libraries\Wire\Wire_nRF52.cpp.o: \
+ C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Wire\Wire_nRF52.cpp \
  C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/Arduino.h \
  C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/avr/pgmspace.h \
  C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/avr/interrupt.h \
@@ -87,69 +87,9 @@ C:\Users\janve\OneDrive\Dokumente\Arduino\SkiPowermeter\build\sketch\SkiPowermet
  C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/wiring_analog.h \
  C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/wiring_shift.h \
  C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/WInterrupts.h \
- C:\Users\janve\OneDrive\Dokumente\Arduino\SkiPowermeter\build\sketch\BLEHelper.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/bluefruit.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/bluefruit_common.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble_err.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble_gap.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble_hci.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble_ranges.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble_types.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble_l2cap.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble_gatt.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble_gattc.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/softdevice/s140_nrf52_7.3.0_API/include/ble_gatts.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/utility/AdaMsg.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEUuid.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEAdvertising.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEClientService.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEService.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEBeacon.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/bluefruit_common.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLECharacteristic.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEService.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/EddyStone.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLECharacteristic.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEScanner.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEPeriph.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLECentral.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEClientCharacteristic.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEDiscovery.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEConnection.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/utility/bonding.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEGatt.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLESecurity.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/Adafruit_nRFCrypto.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/rtos.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nRFCrypto_Random.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_rnd.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_error.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/ssi_pal_types.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/ssi_pal_types_plat.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/ssi_aes.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/ssi_aes_error.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/ssi_aes_defs.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nRFCrypto_Hash.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_hash.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_hash_defs.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/ecc/nRFCrypto_ECC.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_ecpki_types.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_hash.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_pka_defs_hw.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/ssi_pka_hw_plat_defs.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/ssi_pal_compiler.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_ecpki_error.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_ecpki_domain.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/nrf_cc310/include/crys_ecpki_types.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/ecc/nRFCrypto_ECC_PublicKey.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Adafruit_nRFCrypto\src/ecc/nRFCrypto_ECC_PrivateKey.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEDis.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEDfu.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEUart.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/utility/adafruit_fifo.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEBas.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEHidGeneric.h \
+ C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/wiring_private.h \
+ C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Wire\Wire.h \
+ C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/RingBuffer.h \
  C:\Users\janve\Documents\Arduino\libraries\Adafruit_TinyUSB_Library\src/Adafruit_TinyUSB.h \
  C:\Users\janve\Documents\Arduino\libraries\Adafruit_TinyUSB_Library\src/tusb_option.h \
  C:\Users\janve\Documents\Arduino\libraries\Adafruit_TinyUSB_Library\src/common/tusb_compiler.h \
@@ -202,26 +142,4 @@ C:\Users\janve\OneDrive\Dokumente\Arduino\SkiPowermeter\build\sketch\SkiPowermet
  C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/nordic/nrfx/hal/nrf_gpio.h \
  C:\Users\janve\Documents\Arduino\libraries\Adafruit_TinyUSB_Library\src/arduino/cdc/Adafruit_USBH_CDC.h \
  C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/HardwareSerial.h \
- C:\Users\janve\Documents\Arduino\libraries\Adafruit_TinyUSB_Library\src/arduino/msc/Adafruit_USBH_MSC.h \
- C:\Users\janve\Documents\Arduino\libraries\Adafruit_TinyUSB_Library\src/class/hid/hid.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEHidAdafruit.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEHidGeneric.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEHidGamepad.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEMidi.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEComm.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/clients/BLEAncs.h \
- c:\users\janve\appdata\local\arduino15\packages\seeeduino\hardware\nrf52\1.1.8\libraries\bluefruit52lib\src\bleclientcharacteristic.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEClientService.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/clients/BLEClientUart.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/BLEClientCharacteristic.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEUart.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/clients/BLEClientDis.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/clients/BLEClientCts.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/clients/BLEClientHidAdafruit.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/services/BLEHidGeneric.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Bluefruit52Lib\src/clients/BLEClientBas.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/utility/AdaCallback.h \
- C:\Users\janve\OneDrive\Dokumente\Arduino\SkiPowermeter\build\sketch\Accelerometer.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\libraries\Wire/Wire.h \
- C:\Users\janve\AppData\Local\Arduino15\packages\Seeeduino\hardware\nrf52\1.1.8\cores\nRF5/RingBuffer.h \
- C:\Users\janve\Documents\Arduino\libraries\HX711/HX711.h
+ C:\Users\janve\Documents\Arduino\libraries\Adafruit_TinyUSB_Library\src/arduino/msc/Adafruit_USBH_MSC.h
