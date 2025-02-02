@@ -98,6 +98,66 @@ void BLEHelper::updatePowerData(short power, unsigned short revolutions, unsigne
   cyclePowerMeasurement.notify(bleBuffer, 20);
 }
 
+void BLEHelper::updatePowerOnly(short power)
+{
+  // Clear the buffer or flags as needed
+  memset(bleBuffer, 0, sizeof(bleBuffer));
+  flags = 0;
+
+  // According to BLE Cycling Power Measurement, the first two bytes are flags
+  bleBuffer[0] = flags & 0xFF;
+  bleBuffer[1] = (flags >> 8) & 0xFF;
+
+  // Next two bytes (2..3) typically store the "Instantaneous Power"
+  bleBuffer[2] = power & 0xFF;
+  bleBuffer[3] = (power >> 8) & 0xFF;
+
+  // Send the notification
+  cyclePowerMeasurement.notify(bleBuffer, 20);
+}
+
+void BLEHelper::updateRevolutionData(short power, unsigned short revolutions, unsigned short timestamp)
+{
+  // Clear the buffer or flags as needed
+  memset(bleBuffer, 0, sizeof(bleBuffer));
+  flags = 0;
+  // indicate presence of crank revolution data
+  flags |= (1 << 5);
+
+  // According to BLE Cycling Power Measurement, the first two bytes are flags
+  bleBuffer[0] = flags & 0xFF;
+  bleBuffer[1] = (flags >> 8) & 0xFF;
+
+  // Next two bytes (2..3) typically store the "Instantaneous Power"
+  bleBuffer[2] = power & 0xFF;
+  bleBuffer[3] = (power >> 8) & 0xFF;
+  bleBuffer[4] = revolutions & 0xff;
+  bleBuffer[5] = (revolutions >> 8) & 0xff;
+  bleBuffer[6] = timestamp & 0xff;
+  bleBuffer[7] = (timestamp >> 8) & 0xff;
+  
+
+
+  //flags |= (1 << 5);  // Set the appropriate bit for crank revolution data present
+
+  // Cumulative Crank Revolutions
+  // bleBuffer[8] = revolutions & 0xff;
+  // bleBuffer[9] = (revolutions >> 8) & 0xff;
+
+  // // Last Crank Event Time
+  // bleBuffer[10] = timestamp & 0xff;
+  // bleBuffer[11] = (timestamp >> 8) & 0xff;
+
+
+  // Update flags in the buffer
+  // bleBuffer[0] = flags & 0xff;
+  // bleBuffer[1] = (flags >> 8) & 0xff;
+
+  // Send the notification
+  cyclePowerMeasurement.notify(bleBuffer, 20);
+}
+
+
 void BLEHelper::startAdvertising() {
   // Clear previous advertising data
   Bluefruit.Advertising.clearData();

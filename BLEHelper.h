@@ -15,6 +15,8 @@ public:
    * 
    */
   void updatePowerData(short power, unsigned short revolutions, unsigned short timestamp, uint8_t batteryLevel = 100, unsigned short crankRevolutionData = 0, unsigned short cumulativeCrankRevolutions = 0, unsigned short lastCrankEventTime = 0, unsigned short maxForceMagnitude = 0, unsigned short minForceMagnitude = 0, unsigned short maxAngle = 0, unsigned short minAngle = 0);
+  void updatePowerOnly(short power);
+  void updateRevolutionData(short power, unsigned short revolutions, unsigned short timestamp);
 
 
 private:
