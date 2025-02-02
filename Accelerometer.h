@@ -18,6 +18,7 @@ public:
   void writeRegister(uint8_t reg, uint8_t value);
   void readAcceleration(int16_t &x, int16_t &y, int16_t &z);
   int readSensorTime();
+  
 
 private:
 
