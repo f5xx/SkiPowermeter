@@ -209,7 +209,7 @@ void collectDataAndEvaluate() {
     simulatedPower = abs((int16_t)dmsAvg);         // dms-avg ~ power
     // calculate revolutions based on accel-range
     timestamp = millis() % 65536;
-    if (accelMax - accelMin > 2) revolutions +=1;
+    if (accelMax - accelMin > 0.5) revolutions +=1;
   }
   Serial.print("revs "); Serial.print(revolutions, 2);
   bleHelper.updateRevolutionData(simulatedPower, revolutions, getTimestamp());
