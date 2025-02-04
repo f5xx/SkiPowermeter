@@ -1,3 +1,4 @@
+#line 1 "C:\\Users\\janve\\OneDrive\\Dokumente\\Arduino\\SkiPowermeter\\BLEHelper.cpp"
 // BLEHelper.cpp
 #include "BLEHelper.h"
 
@@ -100,48 +101,60 @@ void BLEHelper::updatePowerData(short power, unsigned short revolutions, unsigne
 
 void BLEHelper::updatePowerOnly(short power)
 {
-  // clear the buffer
+  // Clear the buffer or flags as needed
   memset(bleBuffer, 0, sizeof(bleBuffer));
-
-  // indicate presence of ONLY power
   flags = 0;
 
-  // write flags to buffer
+  // According to BLE Cycling Power Measurement, the first two bytes are flags
   bleBuffer[0] = flags & 0xFF;
   bleBuffer[1] = (flags >> 8) & 0xFF;
 
-  // power
+  // Next two bytes (2..3) typically store the "Instantaneous Power"
   bleBuffer[2] = power & 0xFF;
   bleBuffer[3] = (power >> 8) & 0xFF;
 
-  // send the notification / publish the data
+  // Send the notification
   cyclePowerMeasurement.notify(bleBuffer, 20);
 }
 
 void BLEHelper::updateRevolutionData(short power, unsigned short revolutions, unsigned short timestamp)
-//updates power and revolutions --> power always has to be present in ble cycling power template!
 {
-  // clear the buffer
+  // Clear the buffer or flags as needed
   memset(bleBuffer, 0, sizeof(bleBuffer));
   flags = 0;
   // indicate presence of crank revolution data
-  // set flags accordingly...
-
   flags |= (1 << 5);
 
-  // write flags to buffer
+  // According to BLE Cycling Power Measurement, the first two bytes are flags
   bleBuffer[0] = flags & 0xFF;
   bleBuffer[1] = (flags >> 8) & 0xFF;
 
-  // write power, revolutions and timestamp to buffer
-  bleBuffer[2] = power & 0xFF;              
+  // Next two bytes (2..3) typically store the "Instantaneous Power"
+  bleBuffer[2] = power & 0xFF;
   bleBuffer[3] = (power >> 8) & 0xFF;
   bleBuffer[4] = revolutions & 0xff;
   bleBuffer[5] = (revolutions >> 8) & 0xff;
   bleBuffer[6] = timestamp & 0xff;
   bleBuffer[7] = (timestamp >> 8) & 0xff;
   
-  // send the notification / publish the data
+
+
+  //flags |= (1 << 5);  // Set the appropriate bit for crank revolution data present
+
+  // Cumulative Crank Revolutions
+  // bleBuffer[8] = revolutions & 0xff;
+  // bleBuffer[9] = (revolutions >> 8) & 0xff;
+
+  // // Last Crank Event Time
+  // bleBuffer[10] = timestamp & 0xff;
+  // bleBuffer[11] = (timestamp >> 8) & 0xff;
+
+
+  // Update flags in the buffer
+  // bleBuffer[0] = flags & 0xff;
+  // bleBuffer[1] = (flags >> 8) & 0xff;
+
+  // Send the notification
   cyclePowerMeasurement.notify(bleBuffer, 20);
 }
 
@@ -155,17 +168,17 @@ void BLEHelper::startAdvertising() {
   Bluefruit.Advertising.addFlags(BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE);
 
   // Add the Cycling Power Service and Battery Service to the advertising packet
-  Bluefruit.Advertising.addService(cyclePowerService);  // see docs
-  Bluefruit.Advertising.addService(batteryService);     // optional
+  Bluefruit.Advertising.addService(cyclePowerService);
+  Bluefruit.Advertising.addService(batteryService);
 
   // Include the device name in the scan response
   Bluefruit.ScanResponse.addName();
 
-  // Set the advertising interval
+  // Set the advertising interval (100ms - 200ms)
   Bluefruit.Advertising.setInterval(160, 320);  // 100ms - 200ms
 
   // Start advertising in general discoverable mode with a timeout for fast mode
-  Bluefruit.Advertising.setFastTimeout(30);           // Fast advertising mode timeout
-  Bluefruit.Advertising.restartOnDisconnect(true);    // Restart advertising on disconnect
-  Bluefruit.Advertising.start(0);                     // Advertising indefinitely
+  Bluefruit.Advertising.setFastTimeout(30);  // Fast advertising mode timeout
+  Bluefruit.Advertising.restartOnDisconnect(true);  // Restart advertising on disconnect
+  Bluefruit.Advertising.start(0);  // Advertising indefinitely
 }

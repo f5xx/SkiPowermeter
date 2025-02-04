@@ -61,7 +61,7 @@ void TestDMS()
   float force_reading = dms.get_value(1);     // get latest value
 
   Serial.print("dms reading: ");
-  Serial.println(force_reading, 2);             // round to two decimals
+  Serial.println(force_reading, 2);             // round to two decimals and print
 }
 
 void TestBLE() 
@@ -75,10 +75,10 @@ void TestBLE()
   uint8_t batteryLevel = random(50, 101);                                       // Battery level between 50% and 100%
   unsigned short cumulativeCrankRevolutions = revolutions*1.5;                  // Use revolutions for cumulative crank revolutions
   unsigned short lastCrankEventTime = (timestamp + random(100, 500)) % 65536;   // Last crank event time with some offset
-  unsigned short maxForceMagnitude = random(300, 600);                          // Maximum force magnitude between 300 and 600
-  unsigned short minForceMagnitude = random(100, 299);                          // Minimum force magnitude between 100 and 299
-  unsigned short maxAngle = random(180, 360);                                   // Maximum angle between 180 and 360 degrees
-  unsigned short minAngle = random(0, 179);                                     // Minimum angle between 0 and 179 degrees
+  unsigned short maxForceMagnitude = random(300, 600);                          
+  unsigned short minForceMagnitude = random(100, 299);                          
+  unsigned short maxAngle = random(180, 360);                                   
+  unsigned short minAngle = random(0, 179);                                     
 
   // Update power data with all characteristics
   bleHelper.updatePowerData(power, revolutions, timestamp, batteryLevel, 1, cumulativeCrankRevolutions, lastCrankEventTime, maxForceMagnitude, minForceMagnitude, maxAngle, minAngle);
@@ -124,7 +124,9 @@ unsigned short getTimestamp() {
 
 void collectDataAndEvaluate() {
   // essentially updates power and revolutions every 5s
-  // uses 
+  // evaluates 10 x 500ms at 0.1 Hz = 50 samples
+  // here "power" = avg. measurement of DMS
+
   int16_t simulatedPower;
 
   for (int i = 0; i < 10; i++) 
@@ -135,39 +137,39 @@ void collectDataAndEvaluate() {
     // sampling every 10 ms => ~50 samples in 500ms second
     const unsigned long sampleInterval = 10;  // in  ms
 
-    // Prepare buffers
+    // prepare buffers
     const int numSamples = 50;
     float dmsBuffer[numSamples];
     float accelBuffer[numSamples];
 
     int sampleIndex = 0;
 
-    // Collect data for up to 1 second or until we fill the buffer
+    // collect data for up to 1 second or until we fill the buffer
     while (millis() - startTime < collectionTime && sampleIndex < numSamples) {
-      // 1) Read DMS (strain-gauge) data
+      // 1) read dms
       float force_reading = dms.get_value(2);  // use 2 the avarage of two readings of the DMS
       
-      // 2) Read accelerometer data
+      // 2) read acc
       int16_t ax, ay, az;
       Acc.readAcceleration(ax, ay, az);
 
-      // Convert raw accel to g
+      // convert accel to g
       float accelX = ax / 16384.0;
       float accelY = ay / 16384.0;
       float accelZ = az / 16384.0;
       float accelMag = sqrt(accelX * accelX + accelY * accelY + accelZ * accelZ);
       
-      // Store in buffers
+      // store in buffers
       dmsBuffer[sampleIndex]   = force_reading;
       accelBuffer[sampleIndex] = accelMag;
       sampleIndex++;
 
-      // Wait for next sampling interval
+      // wait for next sampling interval
       delay(sampleInterval);
     }
     // buffer filled! Lets evaluate...
 
-    //Chat-Gpt...
+    // Chat-Gpt...
     // Evaluate the collected data—here’s a simple example (avg, min, max).
     float dmsSum = 0;
     float dmsMin = FLT_MAX;
@@ -208,7 +210,7 @@ void collectDataAndEvaluate() {
     // publish results over BLE
     simulatedPower = abs((int16_t)dmsAvg);         // dms-avg ~ power
     // calculate revolutions based on accel-range
-    timestamp = millis() % 65536;
+    timestamp = millis() % 65536; // timestamp for ble power characteristic
     if (accelMax - accelMin > 0.5) revolutions +=1;
   }
   Serial.print("revs "); Serial.print(revolutions, 2);
