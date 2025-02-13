@@ -47,7 +47,6 @@ void loop() {
   
   //collect data and eavluate
   collectDataAndEvaluate();
-
   //TestBLE();
   //TestDMS();
   //TestAccel();
