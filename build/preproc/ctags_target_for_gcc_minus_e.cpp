@@ -9,12 +9,12 @@
 
 
 # 9 "C:\\Users\\janve\\OneDrive\\Dokumente\\Arduino\\SkiPowermeter\\SkiPowermeter.ino"
-BLEHelper bleHelper; //BLE
-HX711 dms; //DMS
-Accelerometer Acc;
-// Definiere Pins für den HX711
-const int LOADCELL_DOUT_PIN = 3; // Daten-Pin (DT) --> DMS
-const int LOADCELL_SCK_PIN = 2; // Takt-Pin (SCK) --> DMS
+BLEHelper bleHelper; // BLE
+HX711 dms; // DMS
+Accelerometer Acc; // Accelorometer / BMI160
+// HX711 Pinout
+const int LOADCELL_DOUT_PIN = 3; // Data(DT) --> DMS
+const int LOADCELL_SCK_PIN = 2; // Clock (SCK) --> DMS
 
 
 short power;
@@ -22,24 +22,24 @@ int revolutions = 0;
 unsigned short timestamp = 0;
 
 void setup() {
-  //BLE Setup
-  Serial.begin(115200);
-  delay(2000);
+  // BLE Setup
+  Serial.begin(115200); // set baurate of serial output
+  delay(2000); // wait for serial to start
   Serial.println("Starting BLE Power Meter...");
 
   // Initialize BLEHelper
   bleHelper.begin();
 
-  //DMS Setup
+  // DMS Setup
   // Initialisiere HX711 mit den definierten Pins
   dms.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
-  dms.set_scale(); // Standard-Kalibrierfaktor, ggf. anpassen
-  dms.tare(); // Setzt den Nullpunkt (Tara)
+  dms.set_scale(); // set calibration factor (standard = 1.0f)
+  dms.tare(); // tare scale
 
   Serial.println("HX711 Module ready");
 
   // Accelerometer setup
-  // Initialize I2C
+  // Initialize I2C --> used to communicate with accelometer
   Wire.begin();
   delay(20);
   Acc.begin();
@@ -50,6 +50,8 @@ void loop() {
 
   //collect data and eavluate
   collectDataAndEvaluate();
+
+  // Testing Functions (uncomment accordingly)
   //TestBLE();
   //TestDMS();
   //TestAccel();
@@ -73,7 +75,7 @@ void TestBLE()
   revolutions += 2; // Increment revolutions
   timestamp = (timestamp + 1024) % 65536; // Increment timestamp with rollover every 64 seconds
 
-  // Generate plausible example data for optional characteristics
+  // Generate some plausible example data for optional (!) characteristics
   uint8_t batteryLevel = random(50, 101); // Battery level between 50% and 100%
   unsigned short cumulativeCrankRevolutions = revolutions*1.5; // Use revolutions for cumulative crank revolutions
   unsigned short lastCrankEventTime = (timestamp + random(100, 500)) % 65536; // Last crank event time with some offset
@@ -104,6 +106,10 @@ void TestAccel()
   float accelZ = az / 16384.0;
 
   float accel = pow(pow(accelX,2)+pow(accelY,2)+pow(accelZ,2), 0.5);
+
+  // Print Accelarations for debugging purposes:
+  //----
+
   // Serial.print("Accel X: ");
   // Serial.print(accelX);
   // Serial.print(" g, Y: ");
@@ -111,6 +117,9 @@ void TestAccel()
   // Serial.print(" g, Z: ");
   // Serial.print(accelZ);
   // Serial.println(" g");
+
+  //----
+
   Serial.print(accel);
   Serial.println(" g");
 }

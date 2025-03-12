@@ -1,25 +1,27 @@
-// BLEHelper.cpp
 #include "BLEHelper.h"
 
 void BLEHelper::begin() {
   // Initialize Bluefruit BLE module
-  Bluefruit.begin();
+  Bluefruit.begin();  
   Bluefruit.setTxPower(8);  // Max transmission power
-  Bluefruit.setName("BikePowerMeter");
+  Bluefruit.setName("SkiPowermeter"); // Name as its discoverable through "Master Device"
 
   // Start the Cycling Power Service
   cyclePowerService.begin();
 
+  // --- configure features that are mandatory according to ble docs ---
+  
   // Configure the Cycling Power Feature characteristic
-  cyclePowerFeature.setProperties(CHR_PROPS_READ);
-  cyclePowerFeature.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);
-  cyclePowerFeature.setFixedLen(4);
+  // Contains information about the supported features
+  cyclePowerFeature.setProperties(CHR_PROPS_READ); // prpos are read only
+  cyclePowerFeature.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS); // open access --> no  password
+  cyclePowerFeature.setFixedLen(4); // Fixed length of 4 bytes
   cyclePowerFeature.begin();
 
   // Configure the Cycling Power Measurement characteristic
   cyclePowerMeasurement.setProperties(CHR_PROPS_NOTIFY);
   cyclePowerMeasurement.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);
-  cyclePowerMeasurement.setFixedLen(20);
+  cyclePowerMeasurement.setFixedLen(8);
   cyclePowerMeasurement.begin();
 
   // Configure the Sensor Location characteristic
@@ -28,13 +30,16 @@ void BLEHelper::begin() {
   cyclePowerSensorLocation.setFixedLen(1);
   cyclePowerSensorLocation.begin();
 
+  // --- optional Battery Service ---
   // Start the Battery Service
-  batteryService.begin();
+  // batteryService.begin();
 
-  // Configure the Battery Level characteristic
-  batteryLevel.setFixedLen(1);
-  batteryLevel.begin();
-  batteryLevel.write(&batteryLevelValue, sizeof(batteryLevelValue));  // Initialize battery level
+  // // Configure the Battery Level characteristic
+  // batteryLevel.setFixedLen(1);
+  // batteryLevel.begin();
+  // batteryLevel.write(&batteryLevelValue, sizeof(batteryLevelValue));  // Initialize battery level
+
+  // one could also include the "Cycling Power Control Point" and use it to implement calibration and setup procedures...
 
   // Start advertising
   startAdvertising();
@@ -52,11 +57,7 @@ void BLEHelper::updatePowerData(short power, unsigned short revolutions, unsigne
   bleBuffer[6] = timestamp & 0xff;
   bleBuffer[7] = (timestamp >> 8) & 0xff;
 
-  // Set battery level
-  bleBuffer[19] = batteryLevel;
-
   // Set optional fields based on method inputs
-
   // Crank Revolution Data (used for cadence calculation)
   if (crankRevolutionData) {
     flags |= (1 << 5);  // Set the appropriate bit for crank revolution data present
@@ -147,6 +148,7 @@ void BLEHelper::updateRevolutionData(short power, unsigned short revolutions, un
 
 
 void BLEHelper::startAdvertising() {
+
   // Clear previous advertising data
   Bluefruit.Advertising.clearData();
   Bluefruit.ScanResponse.clearData();
@@ -165,7 +167,7 @@ void BLEHelper::startAdvertising() {
   Bluefruit.Advertising.setInterval(160, 320);  // 100ms - 200ms
 
   // Start advertising in general discoverable mode with a timeout for fast mode
-  Bluefruit.Advertising.setFastTimeout(30);           // Fast advertising mode timeout
+  Bluefruit.Advertising.setFastTimeout(30);           // Fast advertising mode timeout = 30 secs
   Bluefruit.Advertising.restartOnDisconnect(true);    // Restart advertising on disconnect
   Bluefruit.Advertising.start(0);                     // Advertising indefinitely
 }

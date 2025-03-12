@@ -27,7 +27,7 @@ uint8_t Accelerometer::readRegister(uint8_t reg) {
   Wire.beginTransmission(BMI160_I2C_ADDRESS);
   Wire.write(reg);
   Wire.endTransmission(false);
-  delay(15);
+  delay(15); //some delay is necessary otherwise values are not successfully received!
   Wire.beginTransmission(BMI160_I2C_ADDRESS);
   Wire.requestFrom(BMI160_I2C_ADDRESS, 1);
   return Wire.read();
@@ -38,7 +38,7 @@ int Accelerometer::readSensorTime() {
   Wire.write(0x18);
   Wire.endTransmission(false);
 
-  delay(10);
+  delay(10); //some delay is necessary otherwise values are not successfully received!
 
   Wire.requestFrom(BMI160_I2C_ADDRESS, 3);
   

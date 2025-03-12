@@ -6,12 +6,12 @@
 #include "HX711.h"
 #include <float.h>
 
-BLEHelper bleHelper; //BLE
-HX711 dms; //DMS
-Accelerometer Acc;
-// Definiere Pins für den HX711
-const int LOADCELL_DOUT_PIN = 3; // Daten-Pin (DT) --> DMS
-const int LOADCELL_SCK_PIN = 2;  // Takt-Pin (SCK) --> DMS
+BLEHelper bleHelper;  // BLE
+HX711 dms;            // DMS
+Accelerometer Acc;    // Accelorometer / BMI160
+// HX711 Pinout
+const int LOADCELL_DOUT_PIN = 3; // Data(DT) --> DMS
+const int LOADCELL_SCK_PIN = 2;  // Clock (SCK) --> DMS
 
 
 short power;
@@ -19,24 +19,24 @@ int revolutions = 0;
 unsigned short timestamp = 0;
 
 void setup() {
-  //BLE Setup
-  Serial.begin(115200);
-  delay(2000);
+  // BLE Setup
+  Serial.begin(115200); // set baurate of serial output
+  delay(2000);          // wait for serial to start
   Serial.println("Starting BLE Power Meter...");
 
   // Initialize BLEHelper
   bleHelper.begin();
 
-  //DMS Setup
+  // DMS Setup
   // Initialisiere HX711 mit den definierten Pins
   dms.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
-  dms.set_scale();    // Standard-Kalibrierfaktor, ggf. anpassen
-  dms.tare();         // Setzt den Nullpunkt (Tara)
+  dms.set_scale();    // set calibration factor (standard = 1.0f)
+  dms.tare();         // tare scale
 
   Serial.println("HX711 Module ready");
 
   // Accelerometer setup
-  // Initialize I2C
+  // Initialize I2C --> used to communicate with accelometer
   Wire.begin();
   delay(20);
   Acc.begin();
@@ -47,6 +47,8 @@ void loop() {
   
   //collect data and eavluate
   collectDataAndEvaluate();
+
+  // Testing Functions (uncomment accordingly)
   //TestBLE();
   //TestDMS();
   //TestAccel();
@@ -67,10 +69,10 @@ void TestBLE()
 {
   // Simulate dynamic power data
   power = 200 + (millis() / 1000) % 100;  // Power in watts
-  revolutions += 2;  // Increment revolutions
+  revolutions += 2;                       // Increment revolutions
   timestamp = (timestamp + 1024) % 65536;  // Increment timestamp with rollover every 64 seconds
 
-  // Generate plausible example data for optional characteristics
+  // Generate some plausible example data for optional (!) characteristics
   uint8_t batteryLevel = random(50, 101);                                       // Battery level between 50% and 100%
   unsigned short cumulativeCrankRevolutions = revolutions*1.5;                  // Use revolutions for cumulative crank revolutions
   unsigned short lastCrankEventTime = (timestamp + random(100, 500)) % 65536;   // Last crank event time with some offset
@@ -101,6 +103,10 @@ void TestAccel()
   float accelZ = az / 16384.0;
 
   float accel = pow(pow(accelX,2)+pow(accelY,2)+pow(accelZ,2), 0.5);
+
+  // Print Accelarations for debugging purposes:
+  //----
+
   // Serial.print("Accel X: ");
   // Serial.print(accelX);
   // Serial.print(" g, Y: ");
@@ -108,6 +114,9 @@ void TestAccel()
   // Serial.print(" g, Z: ");
   // Serial.print(accelZ);
   // Serial.println(" g");
+
+  //----
+
   Serial.print(accel);
   Serial.println(" g");
 }
@@ -143,7 +152,7 @@ void collectDataAndEvaluate() {
 
     int sampleIndex = 0;
 
-    // collect data for up to 1 second or until we fill the buffer
+    // collect data for 500 ms or until we fill the buffer
     while (millis() - startTime < collectionTime && sampleIndex < numSamples) {
       // 1) read dms
       float force_reading = dms.get_value(2);  // use 2 the avarage of two readings of the DMS
@@ -166,9 +175,9 @@ void collectDataAndEvaluate() {
       // wait for next sampling interval
       delay(sampleInterval);
     }
-    // buffer filled! Lets evaluate...
+    // buffer filled / time's up! Lets evaluate...
 
-    // Chat-Gpt...
+    // Chat-Gpt... example evaluation
     // Evaluate the collected data—here’s a simple example (avg, min, max).
     float dmsSum = 0;
     float dmsMin = FLT_MAX;
